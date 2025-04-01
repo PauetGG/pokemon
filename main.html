@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POKEMON ✨</title>
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="buscador">
+        <input type="text" id="input-busqueda" class="nes-input" placeholder="Buscar Pokémon..." />
+      </div>
+      <div style="position: absolute; top: 20px; left: 20px; z-index: 999;">
+        <button class="nes-btn is-warning" onclick="window.location.href='admin.html'">
+          ⚙️ ADMIN
+        </button>
+      </div>
+    <h1 class="nes-text is-primary" id="tit" style="text-align: center;">Pokédex Retro</h1>
+    <div id="filtro-tipo" class="nes-container is-rounded">
+        <p class="nes-text">🔎 Filtrar por tipo:</p>
+        <div id="iconos-tipo-container">
+        <div id="iconos-tipo" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px;"></div>
+        </div>
+    </div>
+    <section id="contenedor-pokemon" class="cards"></section>  
+    <div id="modal-pokemon" class="modal" style="display: none;">
+        <div class="modal-content nes-container with-title is-centered">
+          <p class="title" id="modal-nombre"></p>
+          <img id="modal-imagen" src="" alt="" />
+          <div id="modal-tipos"></div>
+          <div id="modal-estadisticas"></div>
+          <button id="cerrar" class="nes-btn is-error">Cerrar</button>
+        </div>
+      </div>
+      <div id="loader-scroll" style="display: none; text-align: center; margin: 20px;">
+        <img id="pokeball-loader"
+             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+             alt="Cargando..." 
+             style="width: 50px;" />
+        <p id="loader-text" class="nes-text is-primary" style="margin-top: 10px;">Cargando más Pokémon...</p>
+      </div>
+      
+    <script src="/dist/main.js"></script>
+</body>
+</html>

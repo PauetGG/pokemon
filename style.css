@@ -1,0 +1,209 @@
+#contenedor-pokemon{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center;
+}
+
+#tit{
+    margin: 40px auto;
+}
+
+/* Card general */
+.card {
+    width: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: orange;
+    cursor: url('/Webp.net-resizeimage.png'), pointer;
+  }
+  
+  /* Sprite */
+  .sprite {
+    width: 125px;
+    margin: 10px auto;
+    display: block;
+    image-rendering: pixelated;
+  }
+  
+  /* Footer con ID y tipos */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 8px;
+    margin-top: auto; 
+    gap: 25px;
+  }
+  
+  /* ID */
+  .card-id {
+    font-size: 0.8rem;
+    color: #444;
+  }
+  
+  /* Tipos */
+  .card-tipos {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  
+  .tipo-icono{
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: #ddd;
+    object-fit: contain;
+    transition: transform 0.2s ease, background-color 0.2s ease, filter 0.2s ease;
+  }
+  /* Colores por tipo */
+.tipo-fire    { background-color: #f08030; }
+.tipo-water   { background-color: #6890f0; }
+.tipo-grass   { background-color: #78c850; }
+.tipo-electric{ background-color: #f8d030; }
+.tipo-ice     { background-color: #98d8d8; }
+.tipo-fighting{ background-color: #c03028; }
+.tipo-poison  { background-color: #a040a0; }
+.tipo-ground  { background-color: #e0c068; }
+.tipo-flying  { background-color: #a890f0; }
+.tipo-psychic { background-color: #f85888; }
+.tipo-bug     { background-color: #a8b820; }
+.tipo-rock    { background-color: #b8a038; }
+.tipo-ghost   { background-color: #705898; }
+.tipo-dark    { background-color: #705848; }
+.tipo-dragon  { background-color: #7038f8; }
+.tipo-steel   { background-color: #b8b8d0; }
+.tipo-fairy   { background-color: #ee99ac; }
+.tipo-normal  { background-color: #a8a878; }
+
+.nes-container.with-title > .title {
+    display: table;
+    padding: 0 .5rem;
+    margin: -1.8rem 0 1rem 0; /* ⬅️ centrado horizontal */
+    font-size: 1rem;
+    background-color: orangered;
+    border: solid black 4px;
+    overflow: hidden;  
+    text-align: center;
+}
+body{
+  margin: 0;
+  background-color: pink;
+}
+/* Fondo del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Contenido del modal */
+.modal-content {
+  border-radius: 10px;
+  width: 460px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  padding: 1rem;
+  align-items: center;
+  height: 90%;
+}
+#modal-tipos{
+  display: flex;
+  gap: 20px;
+}
+#modal-estadisticas {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+  margin: 20px 0;
+}
+
+#modal-estadisticas p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin: 0;
+}
+#modal-imagen{
+    height: 140px;
+    width: 140px;
+    cursor: url('/Webp.net-resizeimage\ \(3\).png'), pointer;
+}
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-20px); } /* ⬆️ más alto */
+  50%  { transform: translateY(0); }
+  70%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+
+.sprite:hover {
+  animation: bounce 1s ease;
+  cursor: url('/Webp.net-resizeimage\ \(3\).png'), pointer;
+}
+#modal-imagen:hover{
+  animation: bounce 1s ease;
+}
+#filtro-tipo .tipo-icono.activo {
+  transform: scale(1.2);
+  filter: brightness(1.3);
+  background-color: black;
+}
+#filtro-tipo .tipo-icono:hover {
+  transform: scale(1.4);
+}
+#filtro-tipo{
+  margin: 1rem auto; 
+  max-width:800px; 
+  text-align: center;
+}
+
+#buscador{
+  position: absolute;
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000;
+}
+#input-busqueda {
+  width: 300px;
+}
+.reset-icono {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+  background-color: red;
+}
+
+.reset-icono:hover {
+  transform: scale(1.1) rotate(10deg);
+  background-color: red;
+}
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

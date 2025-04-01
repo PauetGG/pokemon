@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🛠️ Administrar Pokédex</title>
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <h1 class="nes-text is-primary">🛠️ Gestión Pokédex</h1>
+
+    <div class="top-buttons">
+      <button class="nes-btn is-pink" onclick="window.location.href='main.html'">Volver a Pokédex</button>
+      <button class="nes-btn is-success" id="btn-agregar">➕ Agregar</button>
+      <button class="nes-btn is-warning" id="btn-modificar">✏️ Modificar</button>
+      <button class="nes-btn is-error" id="btn-eliminar">❌ Eliminar</button>
+    </div>
+    <form id="form-agregar" class="nes-container with-title" style="max-width: 600px; margin: 0 auto 2rem; display: none; background: orange;">
+        <p class="title">➕ Añadir Pokémon</p>
+      
+        <div class="nes-field">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" class="nes-input" required />
+        </div>
+      
+        <div class="nes-field" style="margin-top: 1rem;">
+          <label for="imagen">URL Imagen PNG (cuadrada):</label>
+          <input type="url" id="imagen" class="nes-input" required />
+        </div>
+      
+        <div class="nes-field" style="margin-top: 1rem;">
+          <label for="height">Altura (m):</label>
+          <input type="number" id="height" class="nes-input" step="0.1" required />
+        </div>
+      
+        <div class="nes-field" style="margin-top: 1rem;">
+          <label for="weight">Peso (kg):</label>
+          <input type="number" id="weight" class="nes-input" step="0.1" required />
+        </div>
+      
+        <fieldset style="margin-top: 2rem;">
+          <legend><strong>📊 Estadísticas</strong></legend>
+      
+          <div class="nes-field">
+            <label for="hp">HP:</label>
+            <input type="number" id="hp" class="nes-input" required />
+          </div>
+      
+          <div class="nes-field">
+            <label for="attack">Attack:</label>
+            <input type="number" id="attack" class="nes-input" required />
+          </div>
+      
+          <div class="nes-field">
+            <label for="defense">Defense:</label>
+            <input type="number" id="defense" class="nes-input" required />
+          </div>
+      
+          <div class="nes-field">
+            <label for="special-attack">Special Attack:</label>
+            <input type="number" id="special-attack" class="nes-input" required />
+          </div>
+      
+          <div class="nes-field">
+            <label for="special-defense">Special Defense:</label>
+            <input type="number" id="special-defense" class="nes-input" required />
+          </div>
+      
+          <div class="nes-field">
+            <label for="speed">Speed:</label>
+            <input type="number" id="speed" class="nes-input" required />
+          </div>
+        </fieldset>
+      
+        <button type="submit" class="nes-btn is-success" style="margin-top: 1.5rem;">✅ Guardar Pokémon</button>
+      </form>
+      
+      
+    <section class="pokemon-list" id="lista-pokemon">
+      <!-- Aquí se generarán las cards -->
+    </section>
+    <div id="buscador-modificar" class="nes-container with-title" style="display: none; max-width: 500px; margin: 0 auto 2rem;">
+        <p class="title">✏️ Buscar Pokémon</p>
+        <label for="buscar-id-nombre">Introduce el <strong>nombre</strong> o <strong>ID</strong> del Pokémon a modificar:</label>
+        <input type="text" id="buscar-id-nombre" class="nes-input" />
+        <button class="nes-btn is-warning" id="btn-buscar-pokemon" style="margin-top: 1rem;">🔍 Buscar</button>
+        <p id="msg-error" class="nes-text is-error" style="display: none; margin-top: 1rem;"></p>
+      </div>
+    <script src="/dist/admin.js" type="module"></script>
+</body>
+</html>
