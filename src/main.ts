@@ -52,26 +52,32 @@ async function cargarPokemons(): Promise<void> {
     const data = await respuesta.json();
     const lista: Pokemon[] = data.results;
 
-    let contador = 0;
-
+    const detalles: PokemonDetalle[] = [];
     for (const p of lista) {
       const detalle = await obtenerDetalle(p.url);
-      todosLosPokemons.push(detalle);
-
-      if (contador < 20) {
-        crearCard(detalle);
-        cantidadMostrada++;
-      }
-
-      contador++;
+      detalles.push(detalle);
     }
 
-    // ✅ Después de cargar todos los de la API, cargamos los personalizados
+    // Cargar personalizados desde localStorage
     const personalizados = JSON.parse(localStorage.getItem("pokemonsPersonalizados") || "[]");
 
-    if (personalizados.length > 0) {
-      todosLosPokemons = todosLosPokemons.concat(personalizados);
-    }
+    // Fusionar, reemplazando si ya existe un ID
+    personalizados.forEach((custom: any) => {
+      const index = detalles.findIndex(p => p.id === custom.id);
+      if (index !== -1) {
+        detalles[index] = custom;
+      } else {
+        detalles.push(custom);
+      }
+    });
+
+    // Actualizar la lista global
+    todosLosPokemons = detalles;
+
+    // Mostrar los primeros 20
+    cantidadMostrada = 0;
+    contenedor.innerHTML = "";
+    mostrarLotePokemon();
 
   } catch (error) {
     console.error("Error al cargar Pokémon:", error);
