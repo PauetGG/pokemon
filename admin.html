@@ -29,6 +29,51 @@
           <label for="imagen">URL Imagen PNG (cuadrada):</label>
           <input type="url" id="imagen" class="nes-input" required />
         </div>
+        <label for="tipo1">Tipo 1</label>
+        <select id="tipo1" class="nes-select">
+          <option value="">-- Selecciona un tipo --</option>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
+
+        <label for="tipo2">Tipo 2 (opcional)</label>
+        <select id="tipo2" class="nes-select">
+          <option value="">-- Ninguno --</option>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
       
         <div class="nes-field" style="margin-top: 1rem;">
           <label for="height">Altura (m):</label>
@@ -88,6 +133,11 @@
         <button class="nes-btn is-warning" id="btn-buscar-pokemon" style="margin-top: 1rem;">🔍 Buscar</button>
         <p id="msg-error" class="nes-text is-error" style="display: none; margin-top: 1rem;"></p>
       </div>
+      <div id="buscador-eliminar" style="display: none;">
+        <input type="text" id="input-eliminar" class="nes-input" placeholder="Nombre o ID del Pokémon a eliminar" />
+        <button id="btn-confirmar-eliminar" class="nes-btn is-error" style="margin-top: 0.5rem;">Eliminar</button>
+        <p id="msg-eliminar" class="nes-text is-warning" style="display: none; margin-top: 0.5rem;"></p>
+      </div>      
     <script src="/dist/admin.js" type="module"></script>
 </body>
 </html>

@@ -120,7 +120,7 @@ body{
   background-color: orange;
   padding: 1rem;
   align-items: center;
-  height: 90%;
+  max-height: 90%
 }
 #modal-tipos{
   display: flex;
@@ -144,8 +144,8 @@ body{
   margin: 0;
 }
 #modal-imagen{
-    height: 140px;
-    width: 140px;
+    height: 120px;
+    width: 120px;
     cursor: url('/Webp.net-resizeimage\ \(3\).png'), pointer;
 }
 @keyframes bounce {
@@ -176,6 +176,7 @@ body{
   margin: 1rem auto; 
   max-width:800px; 
   text-align: center;
+  margin-top: 60px;
 }
 
 #buscador{
@@ -206,4 +207,70 @@ body{
 @keyframes girar {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+#botones{
+  position: absolute; top: 20px; left: 20px; z-index: 999;
+}
+#boton{
+  position: absolute; top: 80px; left: 20px; z-index: 999;
+}
+@media (max-width: 690px) {
+  #buscador,
+  #botones,
+  #boton {
+    position: static !important;   /* Quita cualquier posicionamiento raro */
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem auto;
+    text-align: center;
+    width: 100%;
+  }
+
+  #botones {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #botones button {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  #buscador input {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  #btn-random {
+    width: 80%;
+    max-width: 300px;
+  }
+  #filtro-tipo{
+    margin-top: 20px;
+    width: 90%;
+  }
+}
+@media (min-width: 690px) and (max-width: 1199px) {
+  #buscador, #boton {
+    position: static !important;  
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  #botones {
+    position: static !important;  
+    text-align: center;
+  }
+  #filtro-tipo{
+    margin-top: 20px;
+    width: 90%;
+  }
+  .header-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
 }

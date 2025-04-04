@@ -21,12 +21,34 @@ const inputBusqueda = document.getElementById("input-busqueda");
 const loaderScroll = document.getElementById("loader-scroll");
 const pokeballLoader = document.getElementById("pokeball-loader");
 const loaderText = document.getElementById("loader-text");
+const btnReset = document.getElementById("btn-reset");
+const btnRandom = document.getElementById("btn-random");
 // Datos y control
 let todosLosPokemons = [];
 let tiposSeleccionados = [];
 let cantidadMostrada = 0;
 const CANTIDAD_POR_LOTE = 20;
 let modoFiltradoActivo = false;
+function reproducirCry(nombre) {
+    const audio = new Audio(`https://play.pokemonshowdown.com/audio/cries/${nombre.toLowerCase()}.mp3`);
+    audio.play().catch((e) => {
+        console.warn(`🔇 No se pudo reproducir el sonido de ${nombre}`, e);
+    });
+}
+btnRandom.addEventListener("click", () => {
+    const maxId = 1025;
+    let idRandom = Math.floor(Math.random() * maxId) + 1;
+    // Buscar en todosLosPokemons (incluye personalizados)
+    const pokemonRandom = todosLosPokemons.find(p => p.id === idRandom);
+    if (pokemonRandom) {
+        mostrarModal(pokemonRandom);
+    }
+    else {
+        // Si no está (raro, pero puede pasar si se eliminó), vuelve a intentar
+        console.warn("🔁 No encontrado, repitiendo...");
+        btnRandom.click();
+    }
+});
 // Cargar todos los Pokémon
 function cargarPokemons() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -34,27 +56,48 @@ function cargarPokemons() {
             const respuesta = yield fetch("https://pokeapi.co/api/v2/pokemon?limit=1025");
             const data = yield respuesta.json();
             const lista = data.results;
-            let contador = 0;
+            let detalles = [];
             for (const p of lista) {
                 const detalle = yield obtenerDetalle(p.url);
-                todosLosPokemons.push(detalle);
-                if (contador < 20) {
-                    crearCard(detalle);
-                    cantidadMostrada++;
-                }
-                contador++;
+                detalles.push(detalle);
             }
-            // ✅ Después de cargar todos los de la API, cargamos los personalizados
+            // Cargar personalizados desde localStorage
             const personalizados = JSON.parse(localStorage.getItem("pokemonsPersonalizados") || "[]");
-            if (personalizados.length > 0) {
-                todosLosPokemons = todosLosPokemons.concat(personalizados);
-            }
+            // Fusionar reemplazando si el ID coincide
+            personalizados.forEach((custom) => {
+                // Si está marcado como eliminado, lo quitamos de la lista final
+                if (custom.eliminado) {
+                    detalles = detalles.filter(p => p.id !== custom.id);
+                }
+                else {
+                    const index = detalles.findIndex(p => p.id === custom.id);
+                    if (index !== -1) {
+                        detalles[index] = custom;
+                    }
+                    else {
+                        detalles.push(custom);
+                    }
+                }
+            });
+            // 👉 Ya con todo fusionado, lo guardamos en la lista global
+            todosLosPokemons = detalles;
+            // Limpiar contenedor y mostrar los primeros 20 desde la lista fusionada
+            cantidadMostrada = 0;
+            contenedor.innerHTML = "";
+            mostrarLotePokemon();
         }
         catch (error) {
             console.error("Error al cargar Pokémon:", error);
         }
     });
 }
+btnReset === null || btnReset === void 0 ? void 0 : btnReset.addEventListener("click", () => {
+    const confirmar = confirm("¿Estás seguro de que quieres eliminar todos los cambios?");
+    if (confirmar) {
+        localStorage.removeItem("pokemonsPersonalizados");
+        location.reload(); // recarga la página
+    }
+});
 // Obtener detalle individual
 function obtenerDetalle(url) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -80,6 +123,10 @@ function crearCard(pokemon) {
     imagen.src = pokemon.sprites.front_default;
     imagen.alt = pokemon.name;
     imagen.className = "sprite";
+    // 👂 Sonido al pasar el ratón sobre la imagen
+    imagen.addEventListener("mouseenter", () => {
+        reproducirCry(pokemon.name);
+    });
     const footer = document.createElement("div");
     footer.className = "card-footer";
     const idTexto = document.createElement("span");
@@ -139,6 +186,7 @@ function mostrarModal(pokemon) {
         modalEstadisticas.appendChild(p);
     });
     modal.style.display = "flex";
+    reproducirCry(pokemon.name);
 }
 // Cerrar modal
 btnCerrarModal.addEventListener("click", () => {

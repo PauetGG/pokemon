@@ -9,15 +9,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="buscador">
-        <input type="text" id="input-busqueda" class="nes-input" placeholder="Buscar Pokémon..." />
-      </div>
-      <div style="position: absolute; top: 20px; left: 20px; z-index: 999;">
-        <button class="nes-btn is-warning" onclick="window.location.href='admin.html'">
-          ⚙️ ADMIN
-        </button>
-      </div>
     <h1 class="nes-text is-primary" id="tit" style="text-align: center;">Pokédex Retro</h1>
+    <div class="header-flex">
+    <div id="botones">
+      <button class="nes-btn is-warning" onclick="window.location.href='admin.html'">
+        ⚙️ ADMIN
+      </button>
+      <button class="nes-btn is-error" id="btn-reset">♻️ Reset</button>
+    </div>
+    <div id="boton">
+      <button id="btn-random" class="nes-btn is-primary">🎲 Pokémon Aleatorio</button>
+    </div>
+    <div id="buscador">
+      <input type="text" id="input-busqueda" class="nes-input" placeholder="Buscar Pokémon..." />
+    </div>
+  </div>
     <div id="filtro-tipo" class="nes-container is-rounded">
         <p class="nes-text">🔎 Filtrar por tipo:</p>
         <div id="iconos-tipo-container">

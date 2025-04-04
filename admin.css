@@ -47,3 +47,23 @@ background-color: #ff85c1;
     background-color: red;
     border: solid 4px black;
 }
+
+#buscador-eliminar{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    width: 50%;
+}
+#btn-confirmar-eliminar{
+    width: 100%;
+}
+#msg-eliminar{
+    color: red;
+}
+
+@media (max-width: 690px) {
+
+}
+@media (min-width: 690px) and (max-width: 1199px){
+    
+}
